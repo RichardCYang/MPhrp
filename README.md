@@ -14,7 +14,7 @@ C# 기반 플랫폼에서 행렬(DataFrame) 및 리스트(DataRow) 클래스 구
 
 ## 라이브러리 사용 예제
 * CSV 파싱
-```
+```C#
 // CSV 파싱 객체 생성
 CSVParser csvParser = new CSVParser();
 // CSV 파일에서 헤더를 제외한 실 데이터 행렬을 가져오기
