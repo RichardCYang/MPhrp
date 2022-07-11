@@ -19,14 +19,13 @@ namespace MPhrpLib {
             get => Int32.Parse( this.Cells[key] );
         }
         public override string ToString(){
-            string content = "(";
+            string content = "";
             for(int i = 0; i < this.Cells.Count; i++){
                 content += this.Cells[i];
                 content += ", ";
             }
             content = content.TrimEnd();
             content = content.TrimEnd(',');
-            content += ")";
             return content;
         }
         public DataRow Abs(){

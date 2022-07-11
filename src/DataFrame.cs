@@ -6,10 +6,11 @@ using System.Collections.Generic;
 namespace MPhrpLib {
     public partial class DataFrame {
         private List<DataRow>   rows;
+        public  DataRow         Columns;
         public  DataRow         Shape;
         public DataFrame(){
-            this.rows = new List<DataRow>();
-            this.Shape = new DataRow();
+            this.rows    = new List<DataRow>();
+            this.Shape   = new DataRow();
             this.Shape.Cells.Add(null); // 행 개수가 저장 될 공간 초기화
             this.Shape.Cells.Add(null); // 열 개수가 저장 될 공간 초기화
         }
@@ -78,9 +79,22 @@ namespace MPhrpLib {
         }
         public override string ToString(){
             string content = "";
+            int cellIdx    = 0;
 
+            if( this.Columns != null ){
+                content += "  " + this.Columns + System.Environment.NewLine;
+            }
             for(int i = 0; i < rows.Count; i++) {
-                content += rows[i];
+                content += i + " ";
+                cellIdx = 0;
+                foreach(string hdrCell in this.Columns.Cells){
+                    if( this.Columns.Cells[cellIdx].Length > rows[i].Cells[cellIdx].Length ){
+                        content += rows[i].Cells[cellIdx].PadRight(this.Columns.Cells[cellIdx].Length + 2);
+                    }else{
+                        content += rows[i].Cells[cellIdx].PadRight(rows[i].Cells[cellIdx].Length + 2);
+                    }
+                    cellIdx++;
+                }
                 content += System.Environment.NewLine;
             }
             return content;

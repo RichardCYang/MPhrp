@@ -2,11 +2,11 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MPhrpLib {
     public partial class CSVParser {
-        public int        HeaderIndex = 0;
-        public DataRow    HeaderRow   = null;
+        public int HeaderIndex = 0;
         private string PreprocessEmpty(string content){
             return content.Replace(",,",",null,").Replace("," + System.Environment.NewLine, ",null" + System.Environment.NewLine).Replace(System.Environment.NewLine + ",",System.Environment.NewLine + "null,");
         }
@@ -41,8 +41,12 @@ namespace MPhrpLib {
             }catch(Exception e){
                 Console.WriteLine(e);
             }
-            this.HeaderRow = frame.FetchRow(this.HeaderIndex);
-            frame.DropRow(this.HeaderIndex);
+            
+            frame.Columns = frame.FetchRow(this.HeaderIndex).Copy();
+
+            for(int i = 0; i <= this.HeaderIndex; i++){
+                frame.DropRow(i);
+            }
             return frame;
         }
     }
