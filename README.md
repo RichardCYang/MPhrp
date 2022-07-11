@@ -19,8 +19,19 @@ C# 기반 플랫폼에서 행렬(DataFrame) 및 리스트(DataRow) 클래스 구
 CSVParser csvParser = new CSVParser();
 // CSV 파일에서 헤더를 제외한 실 데이터 행렬을 가져오기
 DataFrame frame     = csvParser.ParseFromFile("test.csv");
-// CSV 파일에서 헤더에 해당하는 행 리스트를 가져오기
-DataRow   header    = csvParser.HeaderRow;
-// 헤더를 제외한 실제 CSV 데이터의 행과 열 개수를 표시하기
+// CSV 데이터 출력
+Console.WriteLine( frame );
+// 실제 CSV 데이터의 행과 열 개수를 표시하기
 Console.WriteLine( frame.Shape );
+```
+* CSV 파싱 출력 결과
+```
+  ID, LAST_NAME, AGE
+0 1   KIM        30
+1 2   CHOI       25
+2 3   LEE        41
+3 4   PARK       19
+4 5   LIM        36
+
+5, 3
 ```

@@ -10,6 +10,7 @@ namespace MPhrpLib {
             DataFrame   frame     = csvParser.ParseFromFile("test.csv");
             //File.WriteAllText( "exm.txt",frame.ToString() );
             Console.WriteLine(frame);
+            Console.WriteLine(frame.Shape);
         }
     }
 }
